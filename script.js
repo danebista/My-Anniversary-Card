@@ -4,7 +4,7 @@ canvas.width= window.innerWidth;
 canvas.height = 500;
 
 let particleArray=[]
-let adjustX = 10;
+let adjustX = 8;
 let adjustY = 15;
 
 const mouse = {
@@ -21,7 +21,7 @@ window.addEventListener('mousemove',(event)=>{
 
 ctx.font="12px sans-serif"
 ctx.fillStyle = "#ffffff";
-ctx.fillText('Simmy ♥ you', 10, 10)
+ctx.fillText('Dane ♥ Simmu', 10, 10)
 
 const textCoordinates = ctx.getImageData(0, 0, 200, 200);
 
