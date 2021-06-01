@@ -1,7 +1,19 @@
 const canvas =document.getElementById('canvas-window');
 const ctx= canvas.getContext('2d');
 canvas.width= window.innerWidth;
-canvas.height = 500;
+canvas.height = window.innerHeight;
+const base_image = new Image();
+base_image.src = 'img/base.png';
+
+
+
+ctx.beginPath();
+ctx.rect(600, 500, 350, 280);
+ctx.stroke();
+
+base_image.onload = function() {
+    ctx.drawImage(base_image,650,450, 226, 300);
+}
 
 let particleArray=[]
 let adjustX = 8;
@@ -25,6 +37,7 @@ window.addEventListener('mousemove',(event)=>{
 ctx.font="12px sans-serif"
 ctx.fillStyle = "#ffffff";
 ctx.fillText('Dane ♥ Simmu', 10, 10)
+ctx.fillText('Happy Anniversary Maya', 700, 520)
 
 const textCoordinates = ctx.getImageData(0, 0, 200, 200);
 
@@ -75,7 +88,13 @@ class Particle{
        
         if (distance< mouse.radius){
             this.x-=directionX;
-            this.y-=directionY;
+            if (this.y-directionY>480){
+                this.y=this.baseY
+            }
+            else{
+                this.y-=directionY;
+            }
+            
         }
         else{
             if(this.x !== this.baseX){
@@ -104,11 +123,13 @@ function init(){
             }
         }
     }
-   
+
+    ctx.beginPath();
+    ctx.stroke();
 }
 
 function animate(){
-    ctx.clearRect( 0, 0, canvas.width, canvas.height);
+    ctx.clearRect( 0, 0, canvas.width, 500);
     for (let i=0; i< particleArray.length; i++){
         particleArray[i].draw();
         particleArray[i].update();
@@ -129,7 +150,8 @@ function connect(){
                
                if (distance < 25){
                    opacityValue =1-(distance/25);
-                   if (particleArray[a].distance>30 && particleArray[a].distance<50){
+                   if (particleArray[a].distance>30 && particleArray[a].distance<50
+                    ){
                     ctx.strokeStyle = `rgba(255, 255, 0, ${opacityValue})`;
                    }
                    else{
