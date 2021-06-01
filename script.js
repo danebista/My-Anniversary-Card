@@ -8,8 +8,11 @@ base_image.src = 'img/base.png';
 
 
 ctx.beginPath();
+
 ctx.rect(600, 500, 350, 280);
+
 ctx.stroke();
+ctx.closePath();
 
 base_image.onload = function() {
     ctx.drawImage(base_image,650,450, 226, 300);
@@ -33,11 +36,13 @@ window.addEventListener('mousemove',(event)=>{
 
 
 
-
+ctx.beginPath()
 ctx.font="12px sans-serif"
 ctx.fillStyle = "#ffffff";
 ctx.fillText('Dane ♥ Simmu', 10, 10)
-ctx.fillText('Happy Anniversary Maya', 700, 520)
+ctx.fillStyle = "#a9a9a9"
+ctx.font="15px sans-serif"
+ctx.fillText('Happy Anniversary Maya', 700, 550)
 
 const textCoordinates = ctx.getImageData(0, 0, 200, 200);
 
