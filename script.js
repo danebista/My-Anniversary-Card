@@ -129,12 +129,16 @@ function connect(){
                
                if (distance < 25){
                    opacityValue =1-(distance/25);
-                   if (particleArray[a].distance>30 && particleArray[a].distance<50
-                    && particleArray[a].distance>30 && particleArray[a].distance<50){
+                   if (particleArray[a].distance>30 && particleArray[a].distance<50){
                     ctx.strokeStyle = `rgba(255, 255, 0, ${opacityValue})`;
                    }
                    else{
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue})`;
+                        if (particleArray[a].x>=721 && particleArray[a].x<=878 && particleArray[a].y>=264 && particleArray[a].y<=400){
+                            ctx.strokeStyle = `rgba(255, 0, 0, ${opacityValue})`
+                        }
+                        else{
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue})`;
+                        }
                    }
                    ctx.lineWidth = 2;
                    ctx.beginPath();
