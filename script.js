@@ -17,8 +17,6 @@ window.addEventListener('mousemove',(event)=>{
     
     mouse.x = event.x;
     mouse.y = event.y;
-    console.log(mouse.x)
-
 })
 
 ctx.font="12px sans-serif"
