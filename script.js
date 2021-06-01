@@ -19,6 +19,9 @@ window.addEventListener('mousemove',(event)=>{
     mouse.y = event.y;
 })
 
+
+
+
 ctx.font="12px sans-serif"
 ctx.fillStyle = "#ffffff";
 ctx.fillText('Dane ♥ Simmu', 10, 10)
@@ -44,7 +47,12 @@ class Particle{
             ctx.fillStyle = `rgba(255,255,0,0.7)`;
         }
         else{
-            ctx.fillStyle = `white`;
+            if (this.x>=721 && this.x<=878 && this.y>=264 && this.y<=400){
+                ctx.fillStyle = `red`;
+            }
+            else{
+                ctx.fillStyle = `white`;
+            }
         }
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
