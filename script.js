@@ -1,7 +1,7 @@
 const canvas =document.getElementById('canvas-window');
 const ctx= canvas.getContext('2d');
-canvas.width= window.innerWidth;
-canvas.height = 1000;
+ctx.canvas.width= window.innerWidth;
+ctx.canvas.height = window.innerHeight;
 const base_image = new Image();
 base_image.src = 'img/base.png';
 let audio=new Audio();
@@ -188,8 +188,8 @@ function drawHearts(){
       strokeHeart(770)
       ctx.font="20px georgia";
       ctx.fillStyle="white"
-      ctx.fillText('Press R to play audio', 250, 800 )
-      ctx.fillText('Press A to stop audio', 1100, 800 )
+      ctx.fillText('Press R to play audio', 250, 600 )
+      ctx.fillText('Press A to stop audio', 1100, 600 )
 }
 
 function getRandomInt(n) {
