@@ -1,7 +1,7 @@
 const canvas =document.getElementById('canvas-window');
 const ctx= canvas.getContext('2d');
 ctx.canvas.width= window.innerWidth;
-ctx.canvas.height = window.innerHeight;
+ctx.canvas.height = 1000;
 const base_image = new Image();
 base_image.src = 'img/base.png';
 let audio=new Audio();
