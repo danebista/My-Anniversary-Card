@@ -1,10 +1,17 @@
 const canvas =document.getElementById('canvas-window');
 const ctx= canvas.getContext('2d');
 canvas.width= window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = 1000;
 const base_image = new Image();
 base_image.src = 'img/base.png';
+let audio=new Audio();
+audio.src='audio/simmu.mp3';
 
+
+//Function to play the exact file format
+function playAudio(){
+    audio.play();
+}
 
 
 ctx.beginPath();
@@ -34,7 +41,17 @@ window.addEventListener('mousemove',(event)=>{
     mouse.y = event.y;
 })
 
+window.addEventListener('keyup', (event)=>{
+    if (event.keyCode==82){
+        audio.currentTime=0;
+        audio.play();
+    }
 
+    if (event.keyCode==65){
+        audio.pause();
+        audio.currentTime=0;
+    }
+})
 
 ctx.beginPath()
 ctx.font="12px sans-serif"
@@ -43,7 +60,7 @@ ctx.fillText('Dane ♥ Simmu', 10, 10)
 ctx.fillStyle = "#a9a9a9"
 ctx.font="15px sans-serif"
 ctx.fillText('Happy Anniversary Maya', 700, 550)
-
+ctx.closePath()
 const textCoordinates = ctx.getImageData(0, 0, 200, 200);
 
 
@@ -59,7 +76,6 @@ class Particle{
     }
 
     draw(){
-    
 
         if (this.distance >= 70 && this.distance<= 100){
             ctx.fillStyle = `rgba(255,255,0,0.7)`;
@@ -133,6 +149,54 @@ function init(){
     ctx.stroke();
 }
 
+function strokeHeart(locationSetter){
+    var w = 24, h = 10;
+        ctx.strokeStyle = "#000000";
+        ctx.strokeWeight = 3;
+        ctx.shadowOffsetX = 4.0;
+        ctx.shadowOffsetY = 4.0;
+        ctx.lineWidth = 10.0;
+        ctx.fillStyle = "#FF0000";
+        let d = Math.min(w, h);
+        let k = locationSetter;
+        ctx.beginPath()
+        ctx.moveTo(k, k + d / 4);
+        ctx.quadraticCurveTo(k, k, k + d / 4, k);
+        ctx.quadraticCurveTo(k + d / 2, k, k + d / 2, k + d / 4);
+        ctx.quadraticCurveTo(k + d / 2, k, k + d * 3/4, k);
+        ctx.quadraticCurveTo(k + d, k, k + d, k + d / 4);
+        ctx.quadraticCurveTo(k + d, k + d / 2, k + d * 3/4, k + d * 3/4);
+        ctx.lineTo(k + d / 2, k + d);
+        ctx.lineTo(k + d / 4, k + d * 3/4);
+        ctx.quadraticCurveTo(k, k + d / 2, k, k + d / 4);
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+}
+
+function drawHearts(){
+
+      ctx.clearRect( 0, 500, canvas.width, canvas.height-500);
+      ctx.beginPath();
+      ctx.rect(600, 500, 350, 280);
+      ctx.fillStyle = "#a9a9a9"
+      ctx.font="15px sans-serif"
+      ctx.fillText('Happy Anniversary Maya', 700, 550)
+      ctx.stroke();
+      ctx.closePath();
+      ctx.drawImage(base_image,650,450, 226, 300);
+      strokeHeart(770)
+      ctx.font="20px georgia";
+      ctx.fillStyle="white"
+      ctx.fillText('Press R to play audio', 250, 800 )
+      ctx.fillText('Press A to stop audio', 1100, 800 )
+}
+
+function getRandomInt(n) {
+ 
+    return Math.floor(Math.random() * n);
+}
+
 function animate(){
     ctx.clearRect( 0, 0, canvas.width, 500);
     for (let i=0; i< particleArray.length; i++){
@@ -140,6 +204,7 @@ function animate(){
         particleArray[i].update();
     }
     connect();
+    drawHearts();
     requestAnimationFrame(animate);
     
 }
